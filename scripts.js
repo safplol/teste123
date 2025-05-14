@@ -242,6 +242,35 @@ function attachAddToCartEvents() {
 // Inicializar botões de adicionar ao carrinho na home e categorias
 attachAddToCartEvents();
 
+// ===== Lógica do formulário de contato =====
+const contatoSection = document.getElementById('contato');
+const contatoForm = document.getElementById('contato-form');
+const contatoMsg = document.getElementById('contato-msg');
+
+// Exibir formulário ao clicar em "Me Contate" no menu, se houver
+const contatoNavBtn = document.querySelector('a[href="#contato"], button[href="#contato"]');
+if (contatoNavBtn) {
+    contatoNavBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        contatoSection.scrollIntoView({behavior: 'smooth'});
+        contatoForm.style.display = '';
+        contatoMsg.textContent = '';
+    });
+}
+
+// Ocultar mensagem ao focar em qualquer campo do formulário
+Array.from(contatoForm.elements).forEach(el => {
+    el.addEventListener('focus', () => contatoMsg.textContent = '');
+});
+
+contatoForm.onsubmit = function(e) {
+    e.preventDefault();
+    contatoMsg.textContent = 'Mensagem enviada! Obrigado pelo contato.';
+    contatoForm.reset();
+    // Opcional: esconder o formulário após envio
+    // contatoForm.style.display = 'none';
+};
+
 cartIcon.addEventListener('click', () => {
     cartModal.classList.add('open');
     renderCart();
