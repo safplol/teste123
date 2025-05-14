@@ -109,16 +109,10 @@
         </section>
         <section id="contato" class="section">
             <h1>Me Contate</h1>
-            <form action="https://formspree.io/f/xldbookr" method="POST">
-  <label>
-    Seu email:
-    <input type="email" name="email" required>
-  </label>
-  <label>
-    Sua mensagem:
-    <textarea name="message" required></textarea>
-  </label>
-  <button type="submit">Enviar</button>
+            <form id="contato-form" action="https://formspree.io/f/xldbookr" method="POST">
+    <input type="email" name="email" placeholder="Seu email" required>
+    <textarea name="message" placeholder="Sua mensagem" required></textarea>
+    <button type="submit">Enviar</button>
 </form>
             <div id="contato-msg"></div>
         </section>
