@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de eBooks</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.42.3/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">eBookStore</div>
+            <div class="menu-icon" id="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categorias">Categorias</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="user-menu" id="user-menu">
+                <span id="user-email"></span>
+                <button id="login-btn">Entrar</button>
+                <button id="logout-btn" style="display:none;">Sair</button>
+            </div>
+            <div class="cart-icon" id="cart-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8c7ae6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+        </nav>
+        <div class="cart-modal" id="cart-modal">
+            <div class="cart-modal-content">
+                <span class="close-cart" id="close-cart">&times;</span>
+                <h2>Carrinho de Compras</h2>
+                <div id="cart-items"></div>
+                <div class="cart-total">
+                    Total: <span id="cart-total-value">R$ 0,00</span>
+                </div>
+                <button id="checkout-btn">Finalizar Compra</button>
+                <div id="checkout-msg"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Login/Signup Modal -->
+    <div class="auth-modal" id="auth-modal">
+        <div class="auth-modal-content">
+            <span class="close-auth" id="close-auth">&times;</span>
+            <h2 id="auth-modal-title">Entrar</h2>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+                <div class="auth-switch">Não tem uma conta? <a href="#" id="show-signup">Criar conta</a></div>
+            </form>
+            <form id="signup-form" style="display:none;">
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Senha" required>
+                <button type="submit">Criar Conta</button>
+                <div class="auth-switch">Já tem conta? <a href="#" id="show-login">Entrar</a></div>
+            </form>
+            <div id="auth-msg"></div>
+        </div>
+    </div>
+    <main>
+        <section id="home" class="section">
+            <h1>Bem-vindo à eBookStore</h1>
+            <p>Os melhores eBooks em um só lugar!</p>
+            <div class="ebooks-grid">
+                <div class="ebook-card">
+                    <img src="https://placehold.co/150x220/3b2f5c/ffffff?text=Python+Essencial" alt="Python Essencial">
+                    <h2>Python Essencial</h2>
+                    <p>Aprenda Python do zero ao avançado com exemplos práticos.</p>
+                    <span class="preco">R$ 29,90</span>
+                </div>
+                <div class="ebook-card">
+                    <img src="https://placehold.co/150x220/2d1b3b/ffffff?text=JavaScript+Pro" alt="JavaScript Pro">
+                    <h2>JavaScript Pro</h2>
+                    <p>Domine JavaScript e desenvolva aplicações web modernas.</p>
+                    <span class="preco">R$ 34,90</span>
+                </div>
+                <div class="ebook-card">
+                    <img src="https://placehold.co/150x220/4e3ca9/ffffff?text=UX+Design" alt="UX Design">
+                    <h2>UX Design</h2>
+                    <p>Descubra os segredos do design de experiência do usuário.</p>
+                    <span class="preco">R$ 24,90</span>
+                </div>
+                <div class="ebook-card">
+                    <img src="https://placehold.co/150x220/3b2f5c/ffffff?text=Marketing+Digital" alt="Marketing Digital">
+                    <h2>Marketing Digital</h2>
+                    <p>Estratégias práticas para alavancar seu negócio online.</p>
+                    <span class="preco">R$ 19,90</span>
+                </div>
+            </div>
+        </section>
+        <section id="categorias" class="section">
+            <h1>Categorias</h1>
+            <div class="categorias-list">
+                <button class="categoria-btn" data-categoria="programacao">Programação</button>
+                <button class="categoria-btn" data-categoria="design">Design</button>
+                <button class="categoria-btn" data-categoria="marketing">Marketing</button>
+            </div>
+            <div class="ebooks-grid" id="categoria-ebooks">
+                <!-- Ebooks filtrados aparecerão aqui -->
+            </div>
+        </section>
+        <section id="contato" class="section">
+            <h1>Me Contate</h1>
+            <form id="contato-form">
+                <input type="text" name="nome" placeholder="Seu nome" required>
+                <input type="email" name="email" placeholder="Seu email" required>
+                <textarea name="mensagem" placeholder="Sua mensagem" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+            <div id="contato-msg"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 eBookStore. Todos os direitos reservados.</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
