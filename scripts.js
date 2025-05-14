@@ -297,8 +297,4 @@ checkoutBtn.addEventListener('click', () => {
 });
 
 // Formulário de contato (simulado)
-document.getElementById('contato-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    document.getElementById('contato-msg').textContent = 'Mensagem enviada! Obrigado pelo contato.';
-    this.reset();
-});
+
